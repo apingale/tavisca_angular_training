@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/productcompopnent/app.product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DropDownDirective } from './components/Directives/app.dropdown.directives';
 
 @NgModule({
   declarations: [
-    AppComponent, ProductComponent
+    AppComponent, ProductComponent, DropDownDirective
   ],
   imports: [
     BrowserModule,

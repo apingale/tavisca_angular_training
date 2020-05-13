@@ -3,28 +3,24 @@
         <div class="form-group">
             <label>Product Id</label>
             <!--Data Binding Two Way with ngModel-->
-            <input type="text" name="ProductId" formControlName='ProductId' class="form-control">
+            <input type="text" name="ProductId" formControlName='ProductId' class="form-control" [ngClass]="{'is-invalid': !frmPrd.controls.ProductId.valid, 'is-valid': frmPrd.controls.ProductId.valid}">
             <div class="alert alert-danger" *ngIf="frmPrd.controls.ProductId.dirty && !frmPrd.controls.ProductId.valid">               
                 <p *ngIf="frmPrd.controls.ProductId.errors.notunique">Value must be unique</p>
             </div>
         </div>
         <div class="form-group">
             <label>Product Name</label>
-            <input type="text" name="ProductName"formControlName="ProductName" class="form-control">
+            <input type="text" name="ProductName"formControlName="ProductName" class="form-control" [ngClass]="{'is-invalid': !frmPrd.controls.ProductName.valid, 'is-valid': frmPrd.controls.ProductName.valid}">
             <div class="alert alert-danger" *ngIf="frmPrd.controls.ProductName.dirty && !frmPrd.controls.ProductName.valid">               
-                <p *ngIf="frmPrd.controls.ProductName.errors.pattern">Special characters not allowed</p>
                 <p *ngIf="frmPrd.controls.ProductName.errors.notuppercase">First character should be upper case</p>
             </div>
         </div>
         <div class="form-group">
             <label>Price</label>
-            <input type="text" name="Price"  class="form-control">
+            <input type="text" name="Price" formControlName="Price" class="form-control">
         </div>
-        <div class="form-group">
-            <label>Category</label>
-            <select name="Category" [(ngModel)]="product.Category" class="form-control">
-                <option *ngFor="let c of cats" value="{{c}}">{{c}}</option>
-            </select>
+        <div class="form-group">            
+            <app-dropdown-directives [DataSource]="cats" (onSelection)="setCategory($event)"></app-dropdown-directives>
         </div>
         <div class="form-group pull-right">
             <!--Event Binding (click)-->

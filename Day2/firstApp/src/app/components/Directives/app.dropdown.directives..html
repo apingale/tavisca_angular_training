@@ -1,0 +1,19 @@
+<!-- <label>Category</label>
+<select name="Category" formControlName="Category" class="form-control">
+    <option *ngFor="let c of DataSource" value="{{c}}">{{c}}</option>
+</select> -->
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Category
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" *ngFor="let c of DataSource; let indexOfelement=index;">
+            <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio{{indexOfelement}}" name="customRadio" class="custom-control-input" (click)="optionSelected(c)">
+                <label class="custom-control-label" for="customRadio{{indexOfelement}}">{{c}}</label>
+            </div>
+        </a>        
+    </div>
+</div>

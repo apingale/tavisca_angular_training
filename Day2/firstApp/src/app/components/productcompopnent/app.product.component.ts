@@ -35,13 +35,15 @@ export class ProductComponent implements OnInit {
      this.frmPrd = new FormGroup({
       ProductId: new FormControl(this.product.ProductId,
          Validators.compose([
+          Validators.pattern('[0-9]+'),
             UniqueFieldValidator.HasUnique(this.products.map(x => x.ProductId))
          ])),
          ProductName: new FormControl(this.product.ProductName, 
           Validators.compose([
             Validators.pattern('[0-9]+'),
             FirstCharacterUpperCaseFieldValidator.checkUpperCase
-          ]))
+          ])),
+        Price: new FormControl(this.product.Price)
     });
   }
   clear(): void {
@@ -72,4 +74,9 @@ export class ProductComponent implements OnInit {
     const searchText = event.target.value;
     this.products = this.logic.getSearchResult(searchText);
   }
+   setCategory(event): void {
+     this.frmPrd.patchValue({
+       Category: event
+     });
+   }
 }
