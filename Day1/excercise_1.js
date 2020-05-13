@@ -14,4 +14,5 @@ strArray.sort(function (a, b) { return a.length - b.length; }).forEach(function 
 console.log('String Array after reversing is - ');
 strArray.reverse().forEach(function (v, i) {
     console.log(v);
+    dasa 
 });

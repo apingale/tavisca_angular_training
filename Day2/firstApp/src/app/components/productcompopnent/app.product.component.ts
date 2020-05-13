@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/app.product';
 import { Logic } from '../../models/app.logic';
 import { Categories } from '../../models/app.constants';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UniqueFieldValidator, FirstCharacterUpperCaseFieldValidator } from './app.custom.unique.validator';
 @Component({
   selector: 'app-product-component',
   templateUrl: './product.view.html'
@@ -9,7 +11,7 @@ import { Categories } from '../../models/app.constants';
 export class ProductComponent implements OnInit {
   product: Product;
   products: Array<Product>;
-  
+  frmPrd: FormGroup;
   private logic: Logic;
   cats = Categories;
   headers: Array<string>;
@@ -24,11 +26,23 @@ export class ProductComponent implements OnInit {
   // write a performance internsicive code
   // whihc we cannot write in ctor
   ngOnInit(): void {
-     this.products = this.logic.getProducts();    
+     this.products = this.logic.getProducts();
      // read product Scehma from Product class
-     for(let p in this.product) {
+     // tslint:disable-next-line: forin
+     for (const p in this.product) {
        this.headers.push(p);
      }
+     this.frmPrd = new FormGroup({
+      ProductId: new FormControl(this.product.ProductId,
+         Validators.compose([
+            UniqueFieldValidator.HasUnique(this.products.map(x => x.ProductId))
+         ])),
+         ProductName: new FormControl(this.product.ProductName, 
+          Validators.compose([
+            Validators.pattern('[0-9]+'),
+            FirstCharacterUpperCaseFieldValidator.checkUpperCase
+          ]))
+    });
   }
   clear(): void {
     this.product = new Product(0, '', 0, '');
