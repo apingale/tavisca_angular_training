@@ -1,0 +1,24 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">OrderId</th>
+        <th scope="col">Order Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">CustomerId</th>
+        <th scope="col">Order Qty</th>
+        <th scope="col">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of Orders;let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{p.OrderId}}</td>
+        <td>{{p.OrderName}}</td>
+        <td>{{p.Date}}</td>
+        <td>{{p.CustomerId}}</td>
+        <td>{{p.OrderQuantity}}</td>
+        <td>{{p.Amount}}</td>
+      </tr>      
+    </tbody>
+  </table>

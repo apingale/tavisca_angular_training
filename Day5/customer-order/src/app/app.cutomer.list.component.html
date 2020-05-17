@@ -1,0 +1,22 @@
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">CustomerId</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">City</th>
+        <th scope="col">email</th>
+        <th scope="col">Contact Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of customers; let i = index" (click)="getSelectedCustomer(p)">
+        <th scope="row">{{i+1}}</th>
+        <td>{{p.CustomerId}}</td>
+        <td>{{p.CustomerName}}</td>
+        <td>{{p.City}}</td>
+        <td>{{p.Email}}</td>
+        <td>{{p.ContactNumber}}</td>
+      </tr>      
+    </tbody>
+  </table>
